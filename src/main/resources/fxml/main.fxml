@@ -38,7 +38,7 @@
                            <children>
                               <VBox layoutX="48.0" layoutY="33.0" prefHeight="516.0" prefWidth="196.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <VBox prefHeight="454.0" prefWidth="176.0">
                                        <children>
                                           <Button fx:id="pro" alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadProveedor" prefHeight="30.0" prefWidth="176.0" style="-fx-border-color: #fff;" text="Proveedores      ">
                                              <graphic>
@@ -54,7 +54,7 @@
                                              </styleClass>
                                           </Button>
                                           <Separator prefHeight="0.0" prefWidth="176.0" />
-                                          <Button alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="30.0" prefWidth="300.0" style="-fx-border-color: #fff;" styleClass="middle" text="Compras           ">
+                                          <Button alignment="TOP_LEFT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadCompra" prefHeight="30.0" prefWidth="300.0" style="-fx-border-color: #fff;" text="Compras           ">
                                              <graphic>
                                                 <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -62,6 +62,10 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic>
+                                             <styleClass>
+                                                <String fx:value="middle" />
+                                                <String fx:value="warning" />
+                                             </styleClass>
                                           </Button>
                                        </children>
                                     </VBox>
@@ -92,6 +96,18 @@
       </BorderPane>
    </left>
    <center>
-      <BorderPane fx:id="centro" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <BorderPane fx:id="centro" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <Pane prefHeight="5.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </top>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <Pane prefHeight="5.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </bottom></BorderPane>
    </center>
 </BorderPane>
