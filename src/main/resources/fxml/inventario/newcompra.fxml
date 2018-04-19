@@ -125,63 +125,63 @@
                                                             <Label text="Tipo:" GridPane.rowIndex="5" />
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtid" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtnombre" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtnumfactura" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <ComboBox prefWidth="150.0" />
+                                                                  <ComboBox fx:id="txtproveedor" prefWidth="150.0" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                                <children>
-                                                                  <ComboBox prefWidth="150.0" />
+                                                                  <ComboBox fx:id="txtcalidad" prefWidth="150.0" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                                                <children>
-                                                                  <ComboBox prefWidth="150.0" />
+                                                                  <ComboBox fx:id="txttipo" prefWidth="150.0" />
                                                                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtsacos" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtpeso" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtcosecha" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <TextField />
+                                                                  <TextField fx:id="txtubicacion" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                                                <children>
-                                                                  <DatePicker />
+                                                                  <DatePicker fx:id="txtfecha" />
                                                                </children>
                                                             </HBox>
                                                             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
@@ -339,13 +339,13 @@
                                                       </Pane>
                                                    </top>
                                                    <center>
-                                                      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                                      <TableView fx:id="tbcompra" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                                         <columns>
-                                                            <TableColumn prefWidth="75.0" text="Id" />
-                                                          <TableColumn prefWidth="75.0" text="Nombre" />
-                                                          <TableColumn prefWidth="75.0" text="Proveedor" />
-                                                            <TableColumn prefWidth="75.0" text="Sacos" />
-                                                            <TableColumn prefWidth="75.0" text="Peso" />
+                                                            <TableColumn fx:id="clid" prefWidth="75.0" text="Id" />
+                                                          <TableColumn fx:id="clnombre" prefWidth="75.0" text="Nombre" />
+                                                          <TableColumn fx:id="clproveedor" prefWidth="75.0" text="Proveedor" />
+                                                            <TableColumn fx:id="clsacos" prefWidth="75.0" text="Sacos" />
+                                                            <TableColumn fx:id="clpeso" prefWidth="75.0" text="Peso" />
                                                         </columns>
                                                          <columnResizePolicy>
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

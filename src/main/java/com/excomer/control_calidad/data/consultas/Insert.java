@@ -5,9 +5,10 @@
  */
 package com.excomer.control_calidad.data.consultas;
 
+import com.excomer.control_calidad.data.connection.Persistence;
 import com.excomer.control_calidad.entity.Compra;
 import com.excomer.control_calidad.entity.Proveedor;
-import data.conection.Persistence;
+
 
 /**
  *
@@ -34,8 +35,6 @@ public class Insert {
             System.out.println(e.getMessage());
             
         }
-        
-        
     }
     
     public void newCompra(Compra compra) {
@@ -45,6 +44,9 @@ public class Insert {
             per = new Persistence();
             per.persist("INSERT INTO inventario.compra(id, numfactura, nombre, fecha, calidad, tipo, proveedor, sacos, peso, estado, cosecha, ubicacion) VALUES (" + com.getId() +", " +com.getNumFactura() +", '"+ com.getNombre() +"', '" +com.getFecha() +"', " +com.getCalidad() +", " +com.getTipo() +", " +com.getProveedor() +", " +com.getSacos()+ ", " +com.getPeso()+ ", 'A ', '"+ com.getCosecha()+"', '"+ com.getUbicacion()+"');");
         } catch (Exception e) {
+            
+            System.out.println("/*/*/*/ Error");
+            System.out.println(e.getMessage());
         }
     }
     
