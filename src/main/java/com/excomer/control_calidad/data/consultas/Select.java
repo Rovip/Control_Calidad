@@ -7,6 +7,8 @@ package com.excomer.control_calidad.data.consultas;
 import com.excomer.control_calidad.data.connection.Persistence;
 import com.excomer.control_calidad.entity.Compra;
 import com.excomer.control_calidad.entity.Proveedor;
+import com.excomer.control_calidad.entity.TablaGenerica;
+import com.excomer.control_calidad.entity.vistatabla.CompraVistaTabla;
 
 
 import java.sql.ResultSet;
@@ -26,9 +28,15 @@ public class Select {
     private String sql = "";
     private Proveedor pro;
     private Compra com;
+    private CompraVistaTabla cvt;
     private List<Proveedor> listaProveedor;
     private List<Compra> listaCompra;
+    private List<TablaGenerica> listatbg;
+    private List<CompraVistaTabla> listaCompraVistaTabla;
     private int idactual;
+    
+    
+    private String select, from, where;
     
     //Proveedor
     
@@ -96,6 +104,22 @@ public class Select {
         return idactual;
     }
     
+    
+    public List<TablaGenerica> obtenerObjetoProveedor(){
+		try {
+			listatbg = new ArrayList<TablaGenerica>();
+			per = new Persistence();
+                        rs = per.consult("SELECT id, nombre, estado FROM inventario.proveedor");
+			while(rs.next()) {
+				listatbg.add(new TablaGenerica(rs.getInt("id"), rs.getString("nombre"), "Nada", rs.getString("estado")));
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+			
+		}
+		return listatbg;
+	}
+    
     /* --- --- ---  Metodos Compra --- --- --- */
     
     
@@ -117,24 +141,28 @@ public class Select {
         return com;
     }
     
-    public List<Compra> getCompra(String condicion){
+    public List<CompraVistaTabla> getCompra(String condicion){
         
-        String sql = " ";
+        select = "SELECT c.id as id, c.numfactura as numfactura, c.nombre as nombre, c.fecha as fecha, ca.nombre as calidad, t.nombre as tipo, p.nombre as proveedor, c.sacos as sacos, c.peso as peso, c.estado as estado, c.cosecha as cosecha, c.ubicacion as ubiacion ";
+        from = "FROM inventario.compra as c JOIN inventario.proveedor as p ON (c.proveedor = p.id) JOIN calidad.tipo t ON (c.tipo = t.id) JOIN calidad.calidad ca ON (c.calidad = ca.id) ";
+        
+        
+        
         
         if(condicion.equals("T")){
-            sql = "SELECT id, nombre, representante, pais, ciudad, direccion, telefono, email, estado FROM inventario.proveedor";
+            where = ";";
         }else if(condicion.equals("A")){
-            sql = "SELECT id, nombre, representante, pais, ciudad, direccion, telefono, email, estado FROM inventario.proveedor WHERE estado = 'A'";
+            where = "WHERE c.estado = '" + condicion + "';";
         }
         
         
         try {
-            listaCompra = new ArrayList<Compra>();
+            listaCompraVistaTabla = new ArrayList<CompraVistaTabla>();
             per = new Persistence();
-            rs = per.consult(sql);
+            rs = per.consult(select + from + where);
             while(rs.next()){
-                com = new Compra();
-                listaCompra.add(com);
+               cvt = new CompraVistaTabla(rs.getInt("id"), rs.getInt("numfactura"), rs.getString("nombre"), rs.getString("proveedor"), rs.getString("tipo"), rs.getString("calidad"), rs.getDouble("sacos"), rs.getDouble("peso"), rs.getDate("fecha"), rs.getString("estado"), rs.getString("cosecha"), rs.getString("ubicacion"));
+                listaCompraVistaTabla.add(cvt);
             }
         } catch (Exception e) {
             System.out.println("********* ERROR ************");
@@ -142,7 +170,7 @@ public class Select {
             System.out.println("********* ERROR ************");
         }
         
-        return listaCompra;
+        return listaCompraVistaTabla;
     }
     
     public int getIdCompra(){
@@ -162,4 +190,40 @@ public class Select {
         
         return idactual;
     }
+    
+    //Metodos para la tabla calidad
+    
+	
+	public List<TablaGenerica> obtenerObjetoCalidad(){
+		try {
+			listatbg = new ArrayList<TablaGenerica>();
+			per = new Persistence();
+                        rs = per.consult("SELECT id, nombre, descripcion, estado FROM calidad.calidad");
+			while(rs.next()) {
+				listatbg.add(new TablaGenerica(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"), rs.getString("estado")));
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+			
+		}
+		return listatbg;
+	}
+        
+        //Metodos para la tabla Tipo
+    
+	
+	public List<TablaGenerica> obtenerObjetoTipo(){
+		try {
+			listatbg = new ArrayList<TablaGenerica>();
+			per = new Persistence();
+                        rs = per.consult("SELECT id, nombre, descripcion, estado FROM calidad.tipo");
+			while(rs.next()) {
+				listatbg.add(new TablaGenerica(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"), rs.getString("estado")));
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+			
+		}
+		return listatbg;
+	}
 }
