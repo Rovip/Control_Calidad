@@ -39,4 +39,10 @@ public class MainControl {
 	centro.setCenter(datos);
     }
     
+    public void loadMuestra() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+	loader.setLocation(getClass().getResource("/fxml/controlcalidad/newmuestra.fxml"));
+	BorderPane datos = loader.load();
+	centro.setCenter(datos);
+    }
 }

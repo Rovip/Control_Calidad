@@ -68,7 +68,30 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Calidad">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BorderPane layoutX="14.0" layoutY="52.0" prefHeight="468.0" prefWidth="186.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <top>
+                                    <Pane prefHeight="5.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                 </top>
+                                 <left>
+                                    <Pane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+                                 </left>
+                                 <right>
+                                    <Pane prefHeight="200.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <bottom>
+                                    <Pane prefHeight="5.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                                 </bottom>
+                                 <center>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#loadMuestra" prefHeight="41.0" prefWidth="156.0" text="Muestra" />
+                                       </children>
+                                    </VBox>
+                                 </center>
+                              </BorderPane>
+                           </children></AnchorPane>
                   </content>
                 </TitledPane>
                 <TitledPane animated="false" text="Administracion">
