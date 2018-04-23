@@ -5,6 +5,7 @@
  */
 package com.excomer.control_calidad.rules.control.inventario;
 
+import com.excomer.control_calidad.data.consultas.Insert;
 import com.excomer.control_calidad.data.consultas.ListaTabla;
 import com.excomer.control_calidad.data.consultas.Select;
 import com.excomer.control_calidad.entity.Compra;
@@ -37,6 +38,7 @@ public class CompraControl {
     private Select se;
     private ControlFecha cf;
     private int idnuevo = 0;
+    private Insert in;
     
     
     
@@ -116,7 +118,7 @@ public class CompraControl {
     private TableView<Compra> tbcompraactual;
 
     @FXML
-    private TableColumn<Compra, Integer> clidactual;
+    private TableColumn<Compra, String> clnombreactual;
 
     @FXML
     private TableColumn<Compra, Double> clsacosactual;
@@ -178,7 +180,7 @@ public class CompraControl {
             tbcompra.setItems(lt.listaCompraNombres());
             
             
-            clidactual.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+            clnombreactual.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
             clsacosactual.setCellValueFactory(cellData -> cellData.getValue().sacosProperty().asObject());
             clqqactual.setCellValueFactory(cellData -> cellData.getValue().pesoProperty().asObject());
             
@@ -257,9 +259,29 @@ public class CompraControl {
     
     public void add() throws SQLException{
         cf = new ControlFecha();
-        addCompra(Integer.parseInt(txtid.getText()), Integer.parseInt(txtfactura.getText()), txtnombre.getText(), comboproveedor.getValue().getId(), combotipo.getValue().getId(), combocalidad.getValue().getId(), Double.parseDouble(txtsacos.getText()), Double.parseDouble(txtpeso.getText()), cf.getFecha(txtfecha.getValue()), "A", txtcosecha.getText(), txtubicacion.getText());
-        idnuevo = idnuevo +1;
-        txtid.setText(String.valueOf(idnuevo));
+        addCompra(0, Integer.parseInt(txtfactura.getText()), txtnombre.getText(), comboproveedor.getValue().getId(), combotipo.getValue().getId(), combocalidad.getValue().getId(), Double.parseDouble(txtsacos.getText()), Double.parseDouble(txtpeso.getText()), cf.getFecha(txtfecha.getValue()), "A", txtcosecha.getText(), txtubicacion.getText());
+        //idnuevo = idnuevo +1;
+        //txtid.setText(String.valueOf(idnuevo));
+    }
+    
+    public void remove() throws SQLException {
+        if(tbcompraactual.getItems().size() > 0){
+        int index = tbcompraactual.getSelectionModel().getFocusedIndex();
+        tbcompraactual.getItems().remove(index);
+        lcom.remove(index);
+        }
+    }
+    
+    public void insert() throws SQLException {
+        
+        in = new Insert();
+        for(int i = 0; i < lcom.size(); i++){
+            lcom.get(i).setId(idnuevo);
+            in.newCompra(lcom.get(i));
+            idnuevo = idnuevo + 1;
+            txtid.setText(String.valueOf(idnuevo));
+        }
+        
     }
     
     class ObjetoListCell extends ListCell<TablaGenerica> {

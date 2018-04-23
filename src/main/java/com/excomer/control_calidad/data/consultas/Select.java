@@ -141,9 +141,9 @@ public class Select {
         return com;
     }
     
-    public List<CompraVistaTabla> getCompra(String condicion){
+    public List<CompraVistaTabla> getCompraNombre(String condicion){
         
-        select = "SELECT c.id as id, c.numfactura as numfactura, c.nombre as nombre, c.fecha as fecha, ca.nombre as calidad, t.nombre as tipo, p.nombre as proveedor, c.sacos as sacos, c.peso as peso, c.estado as estado, c.cosecha as cosecha, c.ubicacion as ubiacion ";
+        select = "SELECT c.id as id, c.numfactura as numfactura, c.nombre as nombre, c.fecha as fecha, ca.nombre as calidad, t.nombre as tipo, p.nombre as proveedor, c.sacos as sacos, c.peso as peso, c.estado as estado, c.cosecha as cosecha, c.ubicacion as ubicacion ";
         from = "FROM inventario.compra as c JOIN inventario.proveedor as p ON (c.proveedor = p.id) JOIN calidad.tipo t ON (c.tipo = t.id) JOIN calidad.calidad ca ON (c.calidad = ca.id) ";
         
         

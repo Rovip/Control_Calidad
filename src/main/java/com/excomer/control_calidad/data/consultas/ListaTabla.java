@@ -55,7 +55,7 @@ public class ListaTabla {
     public ObservableList<CompraVistaTabla> listaCompraNombres() throws SQLException {
                 se = new Select();
                 datoCompraVistaTabla = FXCollections.observableArrayList();
-                listaCompraVistaTabla = se.getCompra("T");
+                listaCompraVistaTabla = se.getCompraNombre("T");
                 
                 for(int i = 0; i < listaCompraVistaTabla.size(); i++){
                         datoCompraVistaTabla.add(listaCompraVistaTabla.get(i));

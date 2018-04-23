@@ -682,7 +682,7 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 
 .titled-pane > .title {
-	-fx-background-color: #fff;
+	-fx-background-color: transparent;
 	/*-fx-background-insets: 5, 1, 5;*/
 	-fx-background-radius: 3 3 0 0, 2 2 0 0, 1 1 0 0;
 	-fx-border-radius: 3 3 0 0, 2 2 0 0, 1 1 0 0;
@@ -709,6 +709,16 @@ VBox > .split-menu-button.last > .arrow-button {
 .titled-pane.primary > .content {
 	-fx-border-color: #337ab7;
 }
+
+.titled-pane.ordinary {
+	-fx-text-fill: white;
+}
+
+.titled-pane.ordinary > .title {
+	-fx-background-color: transparent;
+	
+}
+
 
 .titled-pane.success .arrow,
 .titled-pane.info .arrow,
