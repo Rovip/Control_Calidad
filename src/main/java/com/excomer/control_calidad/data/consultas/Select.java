@@ -6,9 +6,11 @@
 package com.excomer.control_calidad.data.consultas;
 import com.excomer.control_calidad.data.connection.Persistence;
 import com.excomer.control_calidad.entity.Compra;
+import com.excomer.control_calidad.entity.Muestra;
 import com.excomer.control_calidad.entity.Proveedor;
 import com.excomer.control_calidad.entity.TablaGenerica;
 import com.excomer.control_calidad.entity.vistatabla.CompraVistaTabla;
+import com.excomer.control_calidad.entity.vistatabla.SeleccionMuestraVista;
 
 
 import java.sql.ResultSet;
@@ -28,11 +30,15 @@ public class Select {
     private String sql = "";
     private Proveedor pro;
     private Compra com;
+    private Muestra mue;
     private CompraVistaTabla cvt;
+    private SeleccionMuestraVista svm;
     private List<Proveedor> listaProveedor;
     private List<Compra> listaCompra;
     private List<TablaGenerica> listatbg;
     private List<CompraVistaTabla> listaCompraVistaTabla;
+    private List<SeleccionMuestraVista> listaSeleccionMuestraVista;
+    private List<Muestra> listaMuestra;
     private int idactual;
     
     
@@ -191,6 +197,23 @@ public class Select {
         return idactual;
     }
     
+    public List<SeleccionMuestraVista> obtenerCompraMuestra(){
+        //SELECT id, nombre, peso, fecha FROM inventario.compra;
+        
+        try {
+			listaSeleccionMuestraVista = new ArrayList<SeleccionMuestraVista>();
+			per = new Persistence();
+                        rs = per.consult("SELECT id, nombre, peso, fecha FROM inventario.compra;");
+			while(rs.next()) {
+				listaSeleccionMuestraVista.add(new SeleccionMuestraVista(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("peso"), rs.getDate("fecha")));
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+			
+		}
+		return listaSeleccionMuestraVista;
+    }
+    
     //Metodos para la tabla calidad
     
 	
@@ -225,5 +248,74 @@ public class Select {
 			
 		}
 		return listatbg;
+	} 
+	
+        //Metodos para las Muestras
+    
+	public Muestra getMuestra(int id){
+	
+	try {
+        
+            per = new Persistence();
+            rs = per.consult("SELECT id, idcompra, nombre, fecha, tamano, estado FROM calidad.muestracompra WHERE id= " + id);
+            while(rs.next()){
+                mue = new Muestra(rs.getInt("id"), rs.getInt("idcompra"), rs.getString("nombre"), rs.getDate("fecha"), rs.getDouble("tamano"), rs.getString("rstado"));
+                
+            }
+        } catch (Exception e) {
+            System.out.println("********* ERROR ************");
+            System.out.println(e.getMessage());
+            System.out.println("********* ERROR ************");
+        }
+        
+        return mue;
+	
 	}
+        
+        public List<Muestra> getMuestra(String condicion){
+        
+        select = "SELECT id, idcompra, nombre, fecha, tamano, estado ";
+        from = "FROM calidad.muestracompra ";
+        
+        if(condicion.equals("T")){
+            where = ";";
+        }else if(condicion.equals("A")){
+            where = "WHERE estado = '" + condicion + "';";
+        }
+        
+        
+        try {
+            listaMuestra = new ArrayList<Muestra>();
+            per = new Persistence();
+            rs = per.consult(select + from + where);
+            while(rs.next()){
+               mue = new Muestra(rs.getInt("id"), rs.getInt("idcompra"), rs.getString("nombre"), rs.getDate("fecha"), rs.getDouble("tamano"), rs.getString("rstado"));
+                listaMuestra.add(mue);
+            }
+        } catch (Exception e) {
+            System.out.println("********* ERROR ************");
+            System.out.println(e.getMessage());
+            System.out.println("********* ERROR ************");
+        }
+        
+        return listaMuestra;
+    }
+        
+    public int getIdMuestra(){
+    
+        try {
+            idactual = 0;
+            per = new Persistence();
+            rs = per.consult("SELECT COUNT(id) as actual FROM calidad.muestracompra");
+            while(rs.next()){
+              idactual = rs.getInt("actual");
+            }
+        } catch (Exception e) {
+            System.out.println("********* ERROR ************");
+            System.out.println(e.getMessage());
+            System.out.println("********* ERROR ************");
+        }
+        
+        return idactual;
+    }
 }

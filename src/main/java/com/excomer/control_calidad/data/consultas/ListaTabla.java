@@ -8,6 +8,7 @@ package com.excomer.control_calidad.data.consultas;
 import com.excomer.control_calidad.entity.Compra;
 import com.excomer.control_calidad.entity.Proveedor;
 import com.excomer.control_calidad.entity.vistatabla.CompraVistaTabla;
+import com.excomer.control_calidad.entity.vistatabla.SeleccionMuestraVista;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -27,6 +28,9 @@ public class ListaTabla {
      
      private ObservableList<CompraVistaTabla> datoCompraVistaTabla;
      private List<CompraVistaTabla> listaCompraVistaTabla;
+     
+     private ObservableList<SeleccionMuestraVista> datoSeleccionMuestraVista;
+     private List<SeleccionMuestraVista> listaSeleccionMuestraVista;
      
      private Select se;
      private Insert in;
@@ -74,6 +78,19 @@ public class ListaTabla {
                 }
                 
                 return datoCompra;
+        
+    }
+    
+    public ObservableList<SeleccionMuestraVista> listaCompraMuestra() throws SQLException {
+                se = new Select();
+                datoSeleccionMuestraVista = FXCollections.observableArrayList();
+                listaSeleccionMuestraVista = se.obtenerCompraMuestra();
+                
+                for(int i = 0; i < listaSeleccionMuestraVista.size(); i++){
+                        datoSeleccionMuestraVista.add(listaSeleccionMuestraVista.get(i));
+                }
+                
+                return datoSeleccionMuestraVista;
         
     }
     

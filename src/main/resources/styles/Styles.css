@@ -12,14 +12,14 @@
 
 .titled-pane .title:hover {
     -fx-text-fill: #fff;
-    -fx-background-color: #8593AE;
+    -fx-background-color: #2A3132;
     -fx-border-radius: 5px;
 }
 
 
 #imagen{
       
-        -fx-background-color: #99bb96;
+        -fx-background-color: #2A3132;
         /*20232A*/
     }
 .accordion .titled-pane > *.content{

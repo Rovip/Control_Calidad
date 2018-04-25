@@ -7,6 +7,7 @@ package com.excomer.control_calidad.data.consultas;
 
 import com.excomer.control_calidad.data.connection.Persistence;
 import com.excomer.control_calidad.entity.Compra;
+import com.excomer.control_calidad.entity.Muestra;
 import com.excomer.control_calidad.entity.Proveedor;
 
 
@@ -20,6 +21,7 @@ public class Insert {
     private boolean resultado = true;
     private Proveedor pro;
     private Compra com;
+    private Muestra mue;
     
     /* Proveedor */
     
@@ -48,6 +50,21 @@ public class Insert {
             System.out.println("/*/*/*/ Error");
             System.out.println(e.getMessage());
         }
+    }
+    
+    public void newMuestra(Muestra muestra) {
+    
+        mue = muestra;
+        
+        try {
+            per = new Persistence();
+            per.persist("INSERT INTO calidad.muestracompra(id, idcompra, nombre, fecha, tamano, estado) VALUES (" + mue.getId() +","+ mue.getIdReferencia() +",'"+ mue.getNombre() +"','"+ muestra.getFecha() +"',"+ mue.getTamano() +",'"+ mue.getEstado() + "');");
+        } catch (Exception e) {
+            
+             System.out.println("/*/*/*/ Error");
+            System.out.println(e.getMessage());
+        }
+    
     }
     
     
